@@ -12,7 +12,7 @@
         android:id="@+id/btnYellow"
         android:layout_width="135dp"
         android:layout_height="136dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="44dp"
         android:backgroundTint="#ffd166"
         android:fontFamily="@font/aldrich"
@@ -22,6 +22,21 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCommand" />
+
+    <Button
+        android:id="@+id/btnBlue"
+        android:layout_width="135dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="44dp"
+        android:backgroundTint="#118ab2"
+        android:fontFamily="@font/aldrich"
+        android:text="Blue"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnYellow" />
 
     <Button
         android:id="@+id/btnGreen"
@@ -35,30 +50,15 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintEnd_toStartOf="@+id/btnBlue"
-        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRed" />
-
-    <Button
-        android:id="@+id/btnBlue"
-        android:layout_width="135dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="44dp"
-        android:backgroundTint="#118ab2"
-        android:fontFamily="@font/aldrich"
-        android:text="Blue"
-        android:textColor="@color/black"
-        android:textAllCaps="true"
-        android:textSize="21sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnYellow" />
 
     <Button
         android:id="@+id/btnRed"
         android:layout_width="135dp"
         android:layout_height="136dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#ef476f"
         android:fontFamily="@font/aldrich"
@@ -67,14 +67,14 @@
         android:textColor="#0D0C0C"
         android:textSize="21sp"
         app:layout_constraintEnd_toStartOf="@+id/btnYellow"
-        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCommand" />
 
     <TextView
         android:id="@+id/txtCommand"
         android:layout_width="366dp"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:fontFamily="@font/aldrich"
         android:text="Ali asks..."
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/btnBack"
+        android:id="@+id/btnMainBack"
         android:layout_width="61dp"
         android:layout_height="62dp"
         app:layout_constraintBottom_toTopOf="@+id/txtCommand"
@@ -95,6 +95,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.347"
-        app:srcCompat="@drawable/uiBackBtn" />
+        app:srcCompat="@drawable/ui_back_btn" />
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="..."
+        android:textColor="#fff"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBlue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
