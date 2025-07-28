@@ -12,7 +12,7 @@
         android:id="@+id/txtGameOver"
         android:layout_width="277dp"
         android:layout_height="193dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/pixelify_sans"
         android:text="G a m e  O v e r"
         android:textAlignment="center"
@@ -22,18 +22,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtPlayAgain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:fontFamily="@font/aldrich"
-        android:text="P l a y  a g a i n ?"
-        android:textColor="#fff"
-        android:textSize="27sp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/btnYes"
+        android:layout_width="120dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="68dp"
+        android:backgroundTint="#FFD166"
+        android:text="Y E S"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGameOver" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPlayAgain"
+        app:layout_constraintVertical_bias="0.036" />
 
     <Button
         android:id="@+id/btnNo"
@@ -49,20 +51,35 @@
         app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toEndOf="@+id/btnYes"
         app:layout_constraintTop_toBottomOf="@+id/txtPlayAgain"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.032" />
 
-    <Button
-        android:id="@+id/btnYes"
-        android:layout_width="120dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="68dp"
-        android:backgroundTint="#FFD166"
-        android:text="Y E S"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/txtPlayAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/aldrich"
+        android:text="P l a y  a g a i n ?"
+        android:textColor="#fff"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPlayAgain"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintTop_toBottomOf="@+id/txtGameOver" />
+
+    <TextView
+        android:id="@+id/txtScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aldrich"
+        android:text="SCORES"
+        android:textColor="#fff"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnYes"
+        app:layout_constraintVertical_bias="0.358" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

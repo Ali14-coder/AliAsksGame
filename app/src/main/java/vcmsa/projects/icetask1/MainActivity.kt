@@ -10,7 +10,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
+private var currentScore = 0
+private var highScore = 0
+private var timePerRound = 11_000L // in milliseconds
+private var correctStreak = 0
+private var stableRounds = 0
+private var currentTimer: CountDownTimer? = null
 
 class MainActivity : AppCompatActivity() {
     private lateinit var txtCommand: TextView
@@ -29,10 +34,10 @@ class MainActivity : AppCompatActivity() {
         }
         txtCommand = findViewById(R.id.txtCommand)
 
-
+        resetGame()
         Commands() //this calls the commands class and populates the command list
         getCommand()
-        Timer()
+        startTimer()
 // Associating buttons with column of colour row
         findViewById<Button>(R.id.btnRed).setOnClickListener { handleButtonClick("Red") }
         findViewById<Button>(R.id.btnYellow).setOnClickListener { handleButtonClick("Yellow") }
@@ -42,17 +47,21 @@ class MainActivity : AppCompatActivity() {
         proceed()
 
         val btnReturn = findViewById<ImageView>(R.id.btnMainBack)
-        btnReturn.setOnClickListener{
-            val intent = Intent(this,Welcome::class.java) //opens the playing screen with the intent of the class. The old window is still present. It is NOT CLOSED
-                startActivity(intent)
-            }
+        btnReturn.setOnClickListener {
+            val intent = Intent(
+                this,
+                Welcome::class.java
+            ) //opens the playing screen with the intent of the class. The old window is still present. It is NOT CLOSED
+            startActivity(intent)
         }
+    }
 
 
-    private fun getCommand(){
-        val randomCommand = commmandData.random() //this will return a random command from the commands data list
+    private fun getCommand() {
+        val randomCommand =
+            commmandData.random() //this will return a random command from the commands data list
 
-        val set =listOf(
+        val set = listOf(
             randomCommand.Red,
             randomCommand.Yellow,
             randomCommand.Green,
@@ -62,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         txtCommand.text = set
     }
 
-    private fun proceed(){
+    private fun proceed() {
         val randomCommand = commmandData.random()
 
         // Linking the colour to the random command column
@@ -76,45 +85,74 @@ class MainActivity : AppCompatActivity() {
         val (selectedColour, instruction) = colourMap.entries.random()
         currentCorrectColour = selectedColour // Save correct color
         txtCommand.text = instruction
+        startTimer()
     }
 
-    private fun Timer(){
+    private fun startTimer() {
         val txtTimer = findViewById<TextView>(R.id.txtTimer)
+        currentTimer?.cancel() // Cancel previous timer if any
 
-        object : CountDownTimer(11000,1000) //this sets (how long the timer will last, interval is must go down in)
-        {
+        currentTimer = object : CountDownTimer(timePerRound, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val secondsLeft = millisUntilFinished / 1000 //converts milliseconds to seconds
-                txtTimer.text = secondsLeft.toString() //displays these seconds to user
+                val secondsLeft = millisUntilFinished / 1000
+                txtTimer.text = "$secondsLeft"
             }
 
-            override fun onFinish(){
-                txtTimer.text = "0"
-                val intent = Intent(this@MainActivity, GameOver::class.java)
-                startActivity(intent)
-
+            override fun onFinish() {
+                gameOver()
             }
-
         }.start()
-        //Timer countdown. Starts from 10s. Will go down by 1 second after 5 consec correct guess.
-        //Will remain current second for 3 rounds
-        //Will stop decreasing once reaches 3 secs
-        //When timer runs out, pop up of current score and high score will show.
-        //Once pop up is dismissed, gameover screen will appear
     }
+
 
     private fun handleButtonClick(btnColourSelected: String) {
         if (btnColourSelected == currentCorrectColour) {
+            currentScore++
+            correctStreak++
+            stableRounds++
+
+            updateTimerLogic()
             proceed() //proceeds to next command if the colour guessed was correct
-        }
-        else {
-            val intent = Intent(this, GameOver::class.java)
-            startActivity(intent)
-            finish()
+        } else {
+            gameOver()
         }
     }
 
+    private fun updateTimerLogic() {
+        if (correctStreak >= 5 && timePerRound > 3_000L) {
+            if (stableRounds >= 3) {
+                timePerRound -= 1_000L // reduce by 1 sec
+                stableRounds = 0 // reset 3-round hold
+            }
+        }
     }
+
+    private fun gameOver() {
+        currentTimer?.cancel()
+
+        // Save high score
+        if (currentScore > highScore) {
+            highScore = currentScore
+        }
+
+        val intent = Intent(this, GameOver::class.java).apply {
+            putExtra("currentScore", currentScore)
+            putExtra("highScore", highScore)
+        }
+        startActivity(intent)
+        finish()
+    }
+
+    private fun resetGame() {
+        currentScore = 0
+        timePerRound = 11_000L
+        correctStreak = 0
+        stableRounds = 0
+    }
+
+
+
+}
 
 
 

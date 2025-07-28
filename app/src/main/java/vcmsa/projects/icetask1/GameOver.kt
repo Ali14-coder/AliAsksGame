@@ -3,10 +3,12 @@ package vcmsa.projects.icetask1
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.w3c.dom.Text
 
 class GameOver : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,12 @@ class GameOver : AppCompatActivity() {
             val intent = Intent(this, Welcome::class.java) //opens the Welcome screen with the intent of the class. The old window is still present. It is NOT CLOSED
             startActivity(intent)
         }
+
+        val txtScore = findViewById<TextView>(R.id.txtScores)
+        val currentScore = intent.getIntExtra("currentScore", 0)
+        val highScore = intent.getIntExtra("highScore", 0)
+        txtScore.text = "SCORES:\n\nCurrent score: $currentScore\nHigh Score: $highScore"
+
     }
 
 
