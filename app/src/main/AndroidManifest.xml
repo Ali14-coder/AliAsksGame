@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IceTask1">
         <activity
+            android:name=".Report"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
