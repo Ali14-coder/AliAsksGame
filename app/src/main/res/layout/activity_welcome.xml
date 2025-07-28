@@ -19,7 +19,9 @@
         android:layout_marginBottom="115dp"
         android:fontFamily="@font/pixelify_sans_semibold"
         android:text="ALI ASKS"
+
         android:textAlignment="center"
+        android:textColor="#2E2E2E"
         android:textSize="96sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -16,7 +16,7 @@ data class Commands (
     val GreenCommand3: String  ="Click the colour of grass.",
     val BlueCommand3: String  ="Click the colour of the ocean.",
 
-    val RedCommand4: String  ="Click the colour that ryhmes with 'bed'.",
+    val RedCommand4: String  ="Click the colour that rhymes with 'bed'.",
     val YellowCommand4: String  ="Click the colour that rhymes with 'mellow'.",
     val GreenCommand4: String  ="Click the colour that sounds like 'mean'.",
     val BlueCommand4: String  ="Click the colour that rhymes with 'flu.' ",
