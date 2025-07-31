@@ -24,8 +24,8 @@
 
     <Button
         android:id="@+id/btnYes"
-        android:layout_width="120dp"
-        android:layout_height="58dp"
+        android:layout_width="109dp"
+        android:layout_height="52dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="68dp"
         android:backgroundTint="#FFD166"
@@ -39,8 +39,9 @@
 
     <Button
         android:id="@+id/btnNo"
-        android:layout_width="121dp"
-        android:layout_height="59dp"
+        android:layout_width="109dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="68dp"
         android:backgroundTint="#FFD166"
         android:text="N O"
@@ -48,24 +49,36 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.584"
+        app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toEndOf="@+id/btnYes"
         app:layout_constraintTop_toBottomOf="@+id/txtPlayAgain"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/txtPlayAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/aldrich"
         android:text="P l a y  a g a i n ?"
         android:textColor="#fff"
         android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGameOver" />
+
+    <ImageView
+        android:id="@+id/btnShare"
+        android:layout_width="41dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toEndOf="@+id/txtScores"
+        app:layout_constraintTop_toBottomOf="@+id/btnNo"
+        app:layout_constraintVertical_bias="0.203"
+        app:srcCompat="@android:drawable/ic_menu_share" />
 
     <TextView
         android:id="@+id/txtScores"
@@ -80,6 +93,21 @@
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnYes"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintVertical_bias="0.191" />
+
+    <TextView
+        android:id="@+id/txtReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aldrich"
+        android:text="View Report"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnYes"
+        app:layout_constraintVertical_bias="0.652" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

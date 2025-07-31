@@ -3,6 +3,7 @@ package vcmsa.projects.icetask1
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,6 +25,10 @@ class Report : AppCompatActivity() {
             val intent = Intent(this,Welcome::class.java) //opens the playing screen with the intent of the class. The old window is still present. It is NOT CLOSED
             startActivity(intent)
         }
+        val txtReportView = findViewById<TextView>(R.id.reportView)
+        //Calling and integrating the analysis API
+
+
     }
 
 }

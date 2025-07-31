@@ -41,17 +41,21 @@ class Welcome : AppCompatActivity() {
         }
     }
     private fun stopWelcomeSound() {
-        if (welcomeSoundtrack.isPlaying) {
-            welcomeSoundtrack.stop()
-            welcomeSoundtrack.release()
+        if (::welcomeSoundtrack.isInitialized) {
+            try {
+                if (welcomeSoundtrack.isPlaying) {
+                    welcomeSoundtrack.stop()
+                }
+                welcomeSoundtrack.release()
+            } catch (e: IllegalStateException) {
+                e.printStackTrace() // Optional: for logging
+            }
         }
     }
 
     //this is used to kill the soundtrack to not overburden the memory or cpu
     override fun onDestroy() {
         super.onDestroy()
-        if (::welcomeSoundtrack.isInitialized) {
-            stopWelcomeSound()
-        }
+        stopWelcomeSound()
     }
 }
