@@ -1,6 +1,7 @@
 package vcmsa.projects.icetask1
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -20,11 +21,17 @@ private var currentTimer: CountDownTimer? = null
 class MainActivity : AppCompatActivity() {
     private lateinit var txtCommand: TextView
     private lateinit var currentCorrectColour: String
+    private lateinit var mainSoundtrack: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        //soundtrack initialization
+        mainSoundtrack = MediaPlayer.create(this, R.raw.main_act_soundtrack);
+        mainSoundtrack.isLooping = true
+        mainSoundtrack.start()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -56,7 +63,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::mainSoundtrack.isInitialized) {
+            mainSoundtrack.stop()
+            mainSoundtrack.release()
+        }
+        currentTimer?.cancel()
+    }
     private fun getCommand() {
         val randomCommand =
             commmandData.random() //this will return a random command from the commands data list
@@ -90,12 +104,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun startTimer() {
         val txtTimer = findViewById<TextView>(R.id.txtTimer)
-        currentTimer?.cancel() // Cancel previous timer if any
+        currentTimer?.cancel()
 
         currentTimer = object : CountDownTimer(timePerRound, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val secondsLeft = millisUntilFinished / 1000
-                txtTimer.text = "$secondsLeft"
+                txtTimer.text = "${millisUntilFinished / 1000}"
             }
 
             override fun onFinish() {
@@ -104,6 +117,10 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
+    override fun onPause() {
+        super.onPause()
+        currentTimer?.cancel()
+    }
 
     private fun handleButtonClick(btnColourSelected: String) {
         if (btnColourSelected == currentCorrectColour) {
