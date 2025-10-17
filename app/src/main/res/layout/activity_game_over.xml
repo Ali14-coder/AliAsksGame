@@ -68,18 +68,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGameOver" />
 
-    <ImageView
-        android:id="@+id/btnShare"
-        android:layout_width="41dp"
-        android:layout_height="39dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
-        app:layout_constraintStart_toEndOf="@+id/txtScores"
-        app:layout_constraintTop_toBottomOf="@+id/btnNo"
-        app:layout_constraintVertical_bias="0.203"
-        app:srcCompat="@android:drawable/ic_menu_share" />
-
     <TextView
         android:id="@+id/txtScores"
         android:layout_width="wrap_content"
@@ -94,5 +82,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnYes"
         app:layout_constraintVertical_bias="0.191" />
+
+    <ImageView
+        android:id="@+id/imgGameOverGif"
+        android:layout_width="152dp"
+        android:layout_height="137dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtScores"
+        app:layout_constraintTop_toBottomOf="@+id/btnNo"
+        app:layout_constraintVertical_bias="0.746"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
