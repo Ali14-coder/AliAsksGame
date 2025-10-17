@@ -67,11 +67,11 @@ class GameOver : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnReport = findViewById<TextView>(R.id.txtReport)
-        btnReport.setOnClickListener{
-            val intent = Intent(this,Report::class.java) //opens the playing screen with the intent of the class. The old window is still present. It is NOT CLOSED
-            startActivity(intent)
-        }
+        //val btnReport = findViewById<TextView>(R.id.txtReport)
+//        btnReport.setOnClickListener{
+//            val intent = Intent(this,Report::class.java) //opens the playing screen with the intent of the class. The old window is still present. It is NOT CLOSED
+//            startActivity(intent)
+//        }
     }
 
     private fun captureScreen(view: View): Bitmap {

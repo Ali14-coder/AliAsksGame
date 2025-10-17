@@ -9,57 +9,27 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnYellow"
-        android:layout_width="135dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="44dp"
-        android:backgroundTint="#ffd166"
-        android:fontFamily="@font/aldrich"
-        android:text="Yellow"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCommand" />
-
-    <Button
         android:id="@+id/btnBlue"
         android:layout_width="135dp"
         android:layout_height="136dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="#118ab2"
         android:fontFamily="@font/aldrich"
         android:text="Blue"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="21sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnYellow" />
-
-    <Button
-        android:id="@+id/btnGreen"
-        android:layout_width="135dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="#2FDB72"
-        android:fontFamily="@font/aldrich"
-        android:text="Green"
-        android:textAllCaps="true"
-        android:textColor="#000000"
-        android:textSize="21sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnBlue"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRed" />
+        app:layout_constraintTop_toBottomOf="@+id/btnYellow"
+        app:layout_constraintVertical_bias="0.21" />
 
     <Button
         android:id="@+id/btnRed"
         android:layout_width="135dp"
         android:layout_height="136dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#ef476f"
         android:fontFamily="@font/aldrich"
         android:text="Red"
@@ -67,9 +37,40 @@
         android:textColor="#0D0C0C"
         android:textSize="21sp"
         app:layout_constraintEnd_toStartOf="@+id/btnYellow"
-        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCommand" />
+        app:layout_constraintTop_toBottomOf="@+id/imgColorVisual" />
+
+    <Button
+        android:id="@+id/btnYellow"
+        android:layout_width="135dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="68dp"
+        android:backgroundTint="#ffd166"
+        android:fontFamily="@font/aldrich"
+        android:text="Yellow"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgColorVisual" />
+
+    <Button
+        android:id="@+id/btnGreen"
+        android:layout_width="135dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#2FDB72"
+        android:fontFamily="@font/aldrich"
+        android:text="Green"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnBlue"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRed" />
 
     <TextView
         android:id="@+id/txtCommand"
@@ -108,5 +109,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnBlue" />
+
+    <ImageView
+        android:id="@+id/imgColorVisual"
+        android:layout_width="144dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="52dp"
+        android:contentDescription="Colour related image"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCommand" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

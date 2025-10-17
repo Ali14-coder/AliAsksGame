@@ -11,6 +11,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
+
 private var currentScore = 0
 private var highScore = 0
 private var timePerRound = 11_000L // in milliseconds
@@ -18,10 +23,13 @@ private var correctStreak = 0
 private var stableRounds = 0
 private var currentTimer: CountDownTimer? = null
 
+private const val PEXELS_API_KEY = "lVmRAAUsbE15GP4bvAp1Oqdd5D2toNrRaGl8kTY2pJ8lPVUXRmtpYgRF"
+
 class MainActivity : AppCompatActivity() {
     private lateinit var txtCommand: TextView
     private lateinit var currentCorrectColour: String
     private lateinit var mainSoundtrack: MediaPlayer
+    private lateinit var imgColorVisual: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
         }
         txtCommand = findViewById(R.id.txtCommand)
+        //pexels image that will be shown
+        imgColorVisual = findViewById(R.id.imgColorVisual)
+
 
         resetGame()
         Commands() //this calls the commands class and populates the command list
@@ -99,8 +110,13 @@ class MainActivity : AppCompatActivity() {
         val (selectedColour, instruction) = colourMap.entries.random()
         currentCorrectColour = selectedColour // Save correct color
         txtCommand.text = instruction
+
+        // 🎨 Fetch a new image related to the current colour
+        fetchImage(selectedColour)
+
         startTimer()
     }
+
 
     private fun startTimer() {
         val txtTimer = findViewById<TextView>(R.id.txtTimer)
@@ -120,6 +136,42 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         currentTimer?.cancel()
+    }
+    private fun fetchImage(query: String) {
+        val client = OkHttpClient()
+
+        Thread {
+            try {
+                val request = Request.Builder()
+                    .url("https://api.pexels.com/v1/search?query=${query}&per_page=5") // fetch 5 images
+                    .addHeader("Authorization", PEXELS_API_KEY)
+                    .build()
+
+                client.newCall(request).execute().use { response ->
+                    val jsonString = response.body?.string()
+                    if (!jsonString.isNullOrEmpty()) {
+                        val jsonObj = JSONObject(jsonString)
+                        val photos = jsonObj.optJSONArray("photos")
+                        if (photos != null && photos.length() > 0) {
+                            // Pick a random photo from the array
+                            val randomIndex = (0 until photos.length()).random()
+                            val photo = photos.getJSONObject(randomIndex)
+                            val imageUrl = photo.getJSONObject("src").getString("medium")
+
+                            runOnUiThread {
+                                Glide.with(this@MainActivity)
+                                    .load(imageUrl)
+                                    .placeholder(android.R.drawable.ic_menu_gallery)
+                                    .into(imgColorVisual)
+                            }
+                        }
+
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }.start()
     }
 
     private fun handleButtonClick(btnColourSelected: String) {
